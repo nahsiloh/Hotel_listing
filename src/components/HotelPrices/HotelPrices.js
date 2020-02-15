@@ -34,7 +34,14 @@ export const getHotelPrice = (currency, hotelId) => {
 export const getCompetitorsPrice = (currency, hotelId) => {
   const hotelPriceData = getHotelPriceData(currency, hotelId);
   if (hotelPriceData && hotelPriceData.competitors) {
-    return Object.entries(hotelPriceData.competitors).map(([key, value]) => (
+    const priceArray = Object.entries(hotelPriceData.competitors);
+    priceArray.push(["Ascenda", getHotelPrice(currency, hotelId)]);
+
+    const sortPrices = priceArray.sort((a, b) => {
+      return [a[1]] - [b[1]];
+    });
+
+    return sortPrices.map(([key, value]) => (
       <p>
         {key} : {value}
       </p>
