@@ -3,13 +3,19 @@ import { Navbar } from "react-bootstrap";
 import "./NavBar.css";
 import CurrencySelector from "../CurrencySelector/CurrencySelector";
 
-const NavBar = () => {
-  return (
-    <Navbar expand="lg">
-      <Navbar.Brand>Ascenda</Navbar.Brand>
-      <CurrencySelector />
-    </Navbar>
-  );
-};
+class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Navbar expand="lg">
+        <Navbar.Brand>Ascenda</Navbar.Brand>
+        <CurrencySelector checkCurrency={this.props.checkCurrency} />
+      </Navbar>
+    );
+  }
+}
 
 export default NavBar;
