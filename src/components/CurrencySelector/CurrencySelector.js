@@ -1,21 +1,27 @@
 import React from "react";
-import { Dropdown } from "react-bootstrap";
-
 const CURRENCIES = ["USD", "SGD", "CNY", "KRW"];
 
-const CurrencySelector = () => {
-  return (
-    <div>
-      <Dropdown>
-        <Dropdown.Toggle id="dropdown-basic">Select Currency</Dropdown.Toggle>
-        <Dropdown.Menu>
-          {CURRENCIES.map(currency => (
-            <Dropdown.Item key={currency}>{currency}</Dropdown.Item>
+class CurrencySelector extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  changeCurrency = event => {
+    this.props.checkCurrency(event.target.value);
+  };
+
+  render() {
+    return (
+      <div>
+        <select onChange={this.changeCurrency}>
+          {CURRENCIES.map(cur => (
+            <option value={cur}>{cur}</option>
           ))}
-        </Dropdown.Menu>
-      </Dropdown>
-    </div>
-  );
-};
+        </select>
+      </div>
+    );
+  }
+}
 
 export default CurrencySelector;
