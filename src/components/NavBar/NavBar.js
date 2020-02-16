@@ -4,10 +4,6 @@ import "./NavBar.css";
 import CurrencySelector from "../CurrencySelector/CurrencySelector";
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Navbar expand="lg" className="justify-content-between">
