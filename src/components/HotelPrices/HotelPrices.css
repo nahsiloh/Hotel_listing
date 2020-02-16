@@ -1,9 +1,30 @@
 #tax_and_fees_popup {
-  border: solid grey 0.1px;
-  padding: 20px;
+  border: solid rgba(0, 0, 0, 0.2) 0.1rem;
+  border-radius: 0.2rem;
+  padding: 10px;
   display: none;
+}
+#tax_and_fees_popup > p {
+  font-size: 0.6rem;
+}
+
+#tax_and_fees {
+  font-size: 0.6rem;
 }
 
 #tax_and_fees:hover + #tax_and_fees_popup {
   display: block;
+}
+
+#container__competitorPrices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0.2rem;
+  padding: 0;
+  height: 5rem;
+  width: 5rem;
+  border: solid rgba(0, 0, 0, 0.2) 0.1rem;
+  border-radius: 0.5rem;
 }

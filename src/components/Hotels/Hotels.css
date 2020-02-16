@@ -1,3 +1,7 @@
+h6 {
+  margin-top: 0.5rem;
+}
+
 .container {
   margin-top: 1rem;
   padding-top: 0.5rem;
@@ -12,4 +16,38 @@ img {
   height: 200px;
   object-fit: cover;
   object-position: center;
+}
+
+#hotel__price > p {
+  border: solid #17a2b8 0.1rem;
+  background-color: #d1ecf1;
+}
+
+#hotel__rating > p {
+  border: solid #ffeeba 0.1rem;
+  background-color: #fff3cd;
+}
+
+#hotel__rating > p,
+#hotel__price > p {
+  border-radius: 0.2rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#hotel__address {
+  margin-bottom: 1rem;
+}
+
+.competitor_prices {
+  margin-left: 0rem;
+}
+
+.hotel__ratingPrice {
+  text-align: right;
+}
+
+.col-md-2 > p {
+  text-align: right;
 }
