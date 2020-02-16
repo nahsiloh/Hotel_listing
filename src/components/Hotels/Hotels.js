@@ -16,25 +16,31 @@ class Hotels extends React.Component {
           return (
             <Container key={hotel.name}>
               <Row>
-                <Col sm={4}>
+                <Col md={4}>
                   <Image src={hotel.photo} alt={hotel.name} rounded />
                 </Col>
-                <Col sm={8}>
+                <Col md={8}>
                   <Row>
-                    <Col sm={6}>
+                    <Col md={10} xs={9}>
                       <h6>{hotel.name}</h6>
-                      <p>{hotel.address}</p>
+                      <p id="hotel__address">{hotel.address}</p>
                       <p>Compare rates:</p>
-                      {getCompetitorsPrice(this.props.currency, hotel.id)}
+                      <Row className="competitor_prices">
+                        {getCompetitorsPrice(this.props.currency, hotel.id)}
+                      </Row>
                     </Col>
-                    <Col sm={6}>
-                      {getTaxAndFees(this.props.currency, hotel.id)}
-                      <p>rating: {hotel.rating}</p>
-                      <p>stars: {hotel.stars}</p>
-                      <p data-testid={hotel.name}>
-                        price: {this.props.currency}{" "}
-                        {getHotelPrice(this.props.currency, hotel.id)}
-                      </p>
+                    <Col md={2} xs={3}>
+                      <div id="hotel__rating">
+                        <p>{hotel.rating}</p>
+                      </div>
+                      <p>{hotel.stars} stars</p>
+                      <div id="hotel__price">
+                        <p data-testid={hotel.name}>
+                          {this.props.currency}{" "}
+                          {getHotelPrice(this.props.currency, hotel.id)}
+                        </p>
+                        {getTaxAndFees(this.props.currency, hotel.id)}
+                      </div>
                     </Col>
                   </Row>
                 </Col>

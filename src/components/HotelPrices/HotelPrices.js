@@ -1,6 +1,7 @@
 import React from "react";
 import { USD, SGD, CNY, KRW } from "../../mockApi/pricesData";
 import "./HotelPrices.css";
+import { Container } from "react-bootstrap";
 
 const pricesByCurrency = {
   USD: USD,
@@ -49,7 +50,7 @@ const calculateSavings = (priceOnSite, competitorPrice) => {
 const displaySavings = (priceOnSite, competitorPrice) => {
   const savings = calculateSavings(priceOnSite, competitorPrice);
   if (savings > 0) {
-    return <p>savings: {savings}%</p>;
+    return <p>save: {savings}%</p>;
   }
 };
 
@@ -74,15 +75,16 @@ export const getCompetitorsPrice = (currency, hotelId) => {
     });
 
     return sortPrices.map(([key, value]) => (
-      <div key={key}>
-        <p>
-          {key} : {isStrikethroughRate(priceOnSite, value)}
-        </p>
-        {displaySavings(priceOnSite, value)}
-      </div>
+      <Container id="container__competitorPrices">
+        <div id="div__competitorPrices" key={key}>
+          <p id="competitorName">{key}</p>
+          {isStrikethroughRate(priceOnSite, value)}
+          {displaySavings(priceOnSite, value)}
+        </div>
+      </Container>
     ));
   } else {
-    return "Best price available here";
+    return <p>Best price available here</p>;
   }
 };
 
@@ -95,7 +97,7 @@ export const getTaxAndFees = (currency, hotelId) => {
         <div id="tax_and_fees_popup">
           {Object.entries(hotelPriceData.taxes_and_fees).map(([key, value]) => (
             <p>
-              {key} : {value}
+              {key} : ${value}
             </p>
           ))}
         </div>
