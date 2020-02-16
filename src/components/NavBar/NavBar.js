@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <Navbar expand="lg">
+      <Navbar expand="lg" className="justify-content-between">
         <Navbar.Brand>Ascenda</Navbar.Brand>
         <CurrencySelector checkCurrency={this.props.checkCurrency} />
       </Navbar>
