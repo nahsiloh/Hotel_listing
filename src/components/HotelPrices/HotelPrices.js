@@ -1,5 +1,6 @@
 import React from "react";
 import { USD, SGD, CNY, KRW } from "../../mockApi/pricesData";
+import "./HotelPrices.css";
 
 const pricesByCurrency = {
   USD: USD,
@@ -83,4 +84,23 @@ export const getCompetitorsPrice = (currency, hotelId) => {
   } else {
     return "Best price available here";
   }
+};
+
+export const getTaxAndFees = (currency, hotelId) => {
+  const hotelPriceData = getHotelPriceData(currency, hotelId);
+  if (hotelPriceData && hotelPriceData.taxes_and_fees) {
+    return (
+      <div>
+        <span id="tax_and_fees">*price is tax-inclusive</span>
+        <div id="tax_and_fees_popup">
+          {Object.entries(hotelPriceData.taxes_and_fees).map(([key, value]) => (
+            <p>
+              {key} : {value}
+            </p>
+          ))}
+        </div>
+      </div>
+    );
+  }
+  return;
 };

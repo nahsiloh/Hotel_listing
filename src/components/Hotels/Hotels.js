@@ -2,7 +2,11 @@ import React from "react";
 import HOTELS from "../../mockApi/hotelsData";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import "./Hotels.css";
-import { getHotelPrice, getCompetitorsPrice } from "../HotelPrices/HotelPrices";
+import {
+  getHotelPrice,
+  getCompetitorsPrice,
+  getTaxAndFees
+} from "../HotelPrices/HotelPrices";
 
 class Hotels extends React.Component {
   render() {
@@ -24,6 +28,7 @@ class Hotels extends React.Component {
                       {getCompetitorsPrice(this.props.currency, hotel.id)}
                     </Col>
                     <Col sm={6}>
+                      {getTaxAndFees(this.props.currency, hotel.id)}
                       <p>rating: {hotel.rating}</p>
                       <p>stars: {hotel.stars}</p>
                       <p data-testid={hotel.name}>

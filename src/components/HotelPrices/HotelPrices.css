@@ -1,0 +1,9 @@
+#tax_and_fees_popup {
+  border: solid grey 0.1px;
+  padding: 20px;
+  display: none;
+}
+
+#tax_and_fees:hover + #tax_and_fees_popup {
+  display: block;
+}
