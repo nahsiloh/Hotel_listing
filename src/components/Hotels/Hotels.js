@@ -21,14 +21,12 @@ class Hotels extends React.Component {
                       <h6>{hotel.name}</h6>
                       <p>{hotel.address}</p>
                       <p>Compare rates:</p>
-                      <p>
-                        {getCompetitorsPrice(this.props.currency, hotel.id)}
-                      </p>
+                      {getCompetitorsPrice(this.props.currency, hotel.id)}
                     </Col>
                     <Col sm={6}>
                       <p>rating: {hotel.rating}</p>
                       <p>stars: {hotel.stars}</p>
-                      <p>
+                      <p data-testid={hotel.name}>
                         price: {this.props.currency}{" "}
                         {getHotelPrice(this.props.currency, hotel.id)}
                       </p>
