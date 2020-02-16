@@ -78,6 +78,7 @@ export const getCompetitorsPrice = (currency, hotelId) => {
       <Container id="container__competitorPrices">
         <div id="div__competitorPrices" key={key}>
           <p id="competitorName">{key}</p>
+          {currency}
           {isStrikethroughRate(priceOnSite, value)}
           {displaySavings(priceOnSite, value)}
         </div>
