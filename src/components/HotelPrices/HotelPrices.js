@@ -1,14 +1,6 @@
 import React from "react";
-import { USD, SGD, CNY, KRW } from "../../mockApi/pricesData";
 import "./HotelPrices.css";
 import { Container } from "react-bootstrap";
-
-const pricesByCurrency = {
-  USD: USD,
-  SGD: SGD,
-  CNY: CNY,
-  KRW: KRW
-};
 
 const isHotelPriceDataAvailable = index => {
   if (index >= 0) {
@@ -16,16 +8,15 @@ const isHotelPriceDataAvailable = index => {
   }
 };
 
-const getHotelPriceData = (currency, hotelId) => {
-  const currencySelected = pricesByCurrency[currency];
-  const index = currencySelected.findIndex(obj => obj.id === hotelId);
+const getHotelPriceData = (currencyPriceData, hotelId) => {
+  const index = currencyPriceData.findIndex(obj => obj.id === hotelId);
   if (isHotelPriceDataAvailable(index)) {
-    return currencySelected[index];
+    return currencyPriceData[index];
   }
 };
 
-export const getHotelPrice = (currency, hotelId) => {
-  const hotelPriceData = getHotelPriceData(currency, hotelId);
+export const getHotelPrice = (currencyPriceData, hotelId) => {
+  const hotelPriceData = getHotelPriceData(currencyPriceData, hotelId);
   if (hotelPriceData && hotelPriceData.price) {
     return hotelPriceData.price;
   } else {
@@ -62,9 +53,9 @@ const isStrikethroughRate = (priceOnSite, competitorPrice) => {
   }
 };
 
-export const getCompetitorsPrice = (currency, hotelId) => {
-  const hotelPriceData = getHotelPriceData(currency, hotelId);
-  const priceOnSite = getHotelPrice(currency, hotelId);
+export const getCompetitorsPrice = (currencyPriceData, hotelId, currency) => {
+  const hotelPriceData = getHotelPriceData(currencyPriceData, hotelId);
+  const priceOnSite = getHotelPrice(currencyPriceData, hotelId);
 
   if (hotelPriceData && hotelPriceData.competitors) {
     const priceArray = Object.entries(hotelPriceData.competitors);
@@ -89,8 +80,8 @@ export const getCompetitorsPrice = (currency, hotelId) => {
   }
 };
 
-export const getTaxAndFees = (currency, hotelId) => {
-  const hotelPriceData = getHotelPriceData(currency, hotelId);
+export const getTaxAndFees = (currencyPriceData, hotelId) => {
+  const hotelPriceData = getHotelPriceData(currencyPriceData, hotelId);
   if (hotelPriceData && hotelPriceData.taxes_and_fees) {
     return (
       <div>

@@ -1,5 +1,4 @@
 import React from "react";
-import HOTELS from "../../mockApi/hotelsData";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import "./Hotels.css";
 import {
@@ -9,10 +8,25 @@ import {
 } from "../HotelPrices/HotelPrices";
 
 class Hotels extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hotelData: [] };
+  }
+
+  componentDidMount() {
+    fetch("https://5df9cc6ce9f79e0014b6b3dc.mockapi.io/hotels/tokyo")
+      .then(res => res.json())
+      .then(data =>
+        this.setState(state => {
+          return { hotelData: data };
+        })
+      );
+  }
+
   render() {
     return (
       <div>
-        {HOTELS.map(hotel => {
+        {this.state.hotelData.map(hotel => {
           return (
             <Container key={hotel.name}>
               <Row>
@@ -26,7 +40,11 @@ class Hotels extends React.Component {
                       <p id="hotel__address">{hotel.address}</p>
                       <p>Compare rates:</p>
                       <Row className="competitor_prices">
-                        {getCompetitorsPrice(this.props.currency, hotel.id)}
+                        {getCompetitorsPrice(
+                          this.props.priceDataByCurrency,
+                          hotel.id,
+                          this.props.currency
+                        )}
                       </Row>
                     </Col>
                     <Col md={2} xs={3}>
@@ -37,9 +55,15 @@ class Hotels extends React.Component {
                       <div id="hotel__price">
                         <p data-testid={hotel.name}>
                           {this.props.currency}{" "}
-                          {getHotelPrice(this.props.currency, hotel.id)}
+                          {getHotelPrice(
+                            this.props.priceDataByCurrency,
+                            hotel.id
+                          )}
                         </p>
-                        {getTaxAndFees(this.props.currency, hotel.id)}
+                        {getTaxAndFees(
+                          this.props.priceDataByCurrency,
+                          hotel.id
+                        )}
                       </div>
                     </Col>
                   </Row>
